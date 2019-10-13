@@ -1,0 +1,12 @@
+select S_name from shop group by s_name;
+----------------------------------------------------------
+create trigger t1 after insert on book for each row begin insert into backup values('insert',curdate(),null,concat(new.acc_no,'-',new.year_pub,'-',new.title)); end$$
+----------------------------------------------------------
+create view my1 as select sum(acc_no) from book;
+---------------------------------------------------------
+create view myview2 as select yr_pub,title from book where(yr_pub='1996' AND title='dbms') OR (yr_pub='1998' AND title='os');
+----------------------------------------------------------
+create procedure p1() begin select * from Book ;end //
+------------------------------------------------------------
+create procedure p2(in n int) begin if n%2=0 then select 'even'; else select 'odd'; end if; end//
+
