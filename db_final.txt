@@ -1,0 +1,40 @@
+ REVOKE all ON *.* FROM 'sai';
+-------------------------------
+grant all on *.* to 'sai';
+------------------------------
+alter table book auto_incremenet=121;
+------------------------------------
+select S_name,count(S_name) from shop group by S_name;
+
+-----------------------------------------------
+select S_name from shop group by S_name having count(S_name)>1;
+-------------------------------------------------------------
+create table backup(operation varchar(20) , optime datetime,vold varchar(20), vnew varchar(20));
+create trigger t1 after insert on book for each row begin insert into backup values('insert',curdate(),null,concat(new.acc_no,'-',new.year_pub,'-',new.title)); end$$
+----------------------------------------------------------------
+DECLARE cursor_name CURSOR FOR SELECT_statement;
+	
+OPEN cursor_name;
+FETCH cursor_name INTO variables list;
+CLOSE cursor_name;
+--------------------------------------------------
+create view myview5 as select * from book where title between 'd' and 's'and yr_pub in(2000,1998,1996,1995);
+-----------------------------------------------------------------------------------------
+create procedure p4(in var1 int)  
+    -> begin if var1%2=0 then select 'The number is even'; else select 'The number is odd'; end if; end//
+-------------------------------------
+create procedure p8(out a int) begin select price into a from Supply_by where price<500; end//
+call p8(@a)//       
+select @a//       
+--------------------------------------------------
+create function f1(a int) returns varchar(20) deterministic begin declare b varchar(20); select title into b from book where acc_no=a; return b; end//
+----------------------------------------------
+
+
+MONGO
+
+db.student.update({roll_no:4},{$set:{roll_no:10}},{multi:true});
+validation  ----- db.createCollection("address",{validator:{ name:{$type:"string"},age:{$type:"int"}}})   
+-----------------------------------------------------------------
+db.student.insert({name:"b",hobbies:["kabbadi","kho-kho"]});
+-----------------------------------------------------------
